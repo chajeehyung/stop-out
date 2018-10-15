@@ -1,20 +1,18 @@
 from django.db import models
 
-__all__ = (
-    'University',
-    'Students',
-)
-
-class University(models.Model):
+class Students(models.Model):
+    university = models.ForeignKey(
+        'University',
+        on_delete=models.CASCADE,
+    )
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
 
-class Students(models.Model):
-    name = models.ManyToOneRel(University)
 
-    student_name = models.CharField(max_length=50)
+class University(models.Model):
+    name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
